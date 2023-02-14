@@ -17,6 +17,7 @@ resource "aws_instance" "app_server" {
     ami = "ami-0b752bf1df193a6c4"
     instance_type = "t2.micro"
     tags = {
-        Name = "Hello-Terraform"
+        Name = "terraformInstance"
+        APP = "vue2048"
     }
 }
