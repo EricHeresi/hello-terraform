@@ -25,7 +25,7 @@ resource "aws_instance" "app_server" {
     Name = var.instance_name
     APP  = "vue2048"
   }
-  user_data = <<EOH
+  user_data                   = <<EOH
   #!/bin/bash
   amazon-linux-extras install -y docker
   service docker start
@@ -38,4 +38,5 @@ resource "aws_instance" "app_server" {
   docker-compose up -d
   chown -R ec2-user:ec2-user /home/ec2-user/hello2048
   EOH
+  user_data_replace_on_change = true
 }
