@@ -26,6 +26,6 @@ resource "aws_instance" "app_server" {
     APP  = "vue2048"
   }
   provisioner "local-exec" {
-    command = "ansible-playbook -i ${self.public_ip}, ec2-config.yml"
+    command = "ansible-playbook -i aws_ec2.yml ec2-config.yml"
   }
 }
