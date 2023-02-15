@@ -22,7 +22,7 @@ resource "aws_instance" "app_server" {
     "sg-0194696b9502d969d",
   ]
   tags = {
-    Name = "terraform-Instancia"
+    Name = var.instance_name
     APP  = "vue2048"
   }
 }
