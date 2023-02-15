@@ -30,16 +30,13 @@
       append: yes
   - name: Install docker-compose
     pip:
-      name: docker-compose
+      name: docker-compose>1.7.0,<2.0.0
       executable: pip3
   - name: make directory
     file:
       path: /home/ec2-user/hello2048
       state: directory
       mode: '0755'
-  - name: change directory
-    shell: cd /home/ec2-user/hello2048
-  - name: Download docker-compose.yml
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/EricHeresi/hello-2048/main/docker-compose.yml
       dest: /home/ec2-user/hello2048
@@ -48,15 +45,9 @@
   vars:
     ansible_user: ec2-user
   tasks:
-  - name: change directory
-    shell: cd /home/ec2-user/hello2048
-  - name: Download docker-compose.yml
-    ansible.builtin.get_url:
-      url: https://raw.githubusercontent.com/EricHeresi/hello-2048/main/docker-compose.yml
-      dest: /home/ec2-user/hello2048
-  - name: Pull images
-    shell: docker-compose pull
-    become: true
-  - name: Deploy image 
-    shell: docker-compose up -d
-    become: true
+  - name: Pull and run images
+    community.docker.docker_compose:
+      project_src: /home/ec2-user/hello2048
+      pull: true
+    vars:
+      ansible_python_interpreter: /usr/bin/python3
