@@ -37,14 +37,10 @@
       path: /home/ec2-user/hello2048
       state: directory
       mode: '0755'
+  - name: Download docker-compose.yml
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/EricHeresi/hello-2048/main/docker-compose.yml
       dest: /home/ec2-user/hello2048
-- hosts: all
-  become: true
-  vars:
-    ansible_user: ec2-user
-  tasks:
   - name: Pull and run images
     community.docker.docker_compose:
       project_src: /home/ec2-user/hello2048
