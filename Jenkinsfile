@@ -43,6 +43,7 @@ pipeline {
                                     playbook: 'ec2-dockerconfig.yml',
                                     inventory: 'aws_ec2.yml',
                                     credentialsId: 'ssh_amazon',
+                                    extras: '-v',
                                     colorized: true)
                             }
                         }
