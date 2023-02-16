@@ -55,3 +55,8 @@
       pull: true
     vars:
       ansible_python_interpreter: /usr/bin/python3
+  - name: delete docker config
+    ansible.builtin.file:
+      path: /root/.docker/config.json
+      state: absent
+    become: true
