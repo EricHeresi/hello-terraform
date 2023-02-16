@@ -39,10 +39,13 @@
       mode: '0755'
       owner: ec2-user
       group: ec2-user
-  - name: GHCR credentials
-    shell: "docker login ghcr.io -u EricHeresi -p {{ my_token }}"
+  - name: Docker login
+    community.docker.docker_login:
+      username: EricHeresi
+      password: "{{ lookup('env', 'TOKEN') }}"
+      registry_url: ghcr.io
     vars:
-      my_token: "{{ lookup('env', 'TOKEN') }}"
+      ansible_python_interpreter: /usr/bin/python3
   - name: Download docker-compose.yml
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/EricHeresi/hello-terraform/main/docker/docker-compose.yml
