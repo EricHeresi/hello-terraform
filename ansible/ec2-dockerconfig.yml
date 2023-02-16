@@ -45,6 +45,7 @@
       password: "{{ lookup('env', 'TOKEN') }}"
     vars:
       my_token: "{{ lookup('env', 'TOKEN') }}"
+      ansible_python_interpreter: /usr/bin/python3
   - name: Download docker-compose.yml
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/EricHeresi/hello-terraform/main/docker/docker-compose.yml
