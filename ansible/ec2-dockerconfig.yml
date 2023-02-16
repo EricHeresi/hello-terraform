@@ -41,7 +41,7 @@
       group: ec2-user
   - name: Download docker-compose.yml
     ansible.builtin.get_url:
-      url: https://raw.githubusercontent.com/EricHeresi/hello-terraform/all-in-one/docker/docker-compose.yml
+      url: https://raw.githubusercontent.com/EricHeresi/hello-terraform/main/docker/docker-compose.yml
       dest: /home/ec2-user/hello2048
       owner: ec2-user
       group: ec2-user
