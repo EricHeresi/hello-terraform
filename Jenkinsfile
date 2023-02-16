@@ -13,8 +13,7 @@ pipeline {
         stage("Deployment"){
             steps {
                 dir('ansible') {
-                    sh 'env ANSIBLE_CONFIG=ansible.cfg'
-                    sshagent(['ssh_amazon']) {
+                    withAWS(credentials: 'aws-access-key', region: 'eu-west-1')  {
                         sh 'ansible-playbook -i aws_ec2.yml ec2-dockerconfig.yml'
                     }
                 }
