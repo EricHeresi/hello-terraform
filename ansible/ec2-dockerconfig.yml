@@ -42,7 +42,7 @@
   - name: Docker login
     community.docker.docker_login:
       username: EricHeresi
-      password: "{{ lookup('env', 'TOKEN') }}"
+      password: "{{ lookup('env', 'GIT_TOKEN') }}"
       registry_url: ghcr.io
     vars:
       ansible_python_interpreter: /usr/bin/python3

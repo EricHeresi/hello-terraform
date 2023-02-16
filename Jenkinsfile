@@ -36,13 +36,17 @@ pipeline {
         stage("Deployment"){
             steps {
                 dir('ansible') {
-                    sshagent(['ssh_amazon']){
-                        withAWS(credentials: 'aws-access-key', region: 'eu-west-1')  {
-                            withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
-                                sh 'TOKEN=$GIT_TOKEN ansible-playbook -i aws_ec2.yml -v ec2-dockerconfig.yml'
+                    withAWS(credentials: 'aws-access-key', region: 'eu-west-1')  {
+                        withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
+                            ansiColor('xterm') {
+                                ansiblePlaybook(
+                                    playbook: 'ec2-dockerconfig.yml',
+                                    inventory: 'aws_ec2.yml',
+                                    credentialsId: 'ssh_amazon',
+                                    colorized: true)
                             }
                         }
-                    }
+                    }            
                 }
             }
         }
