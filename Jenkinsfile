@@ -38,7 +38,9 @@ pipeline {
                 dir('ansible') {
                     sshagent(['ssh_amazon']){
                         withAWS(credentials: 'aws-access-key', region: 'eu-west-1')  {
-                            sh 'ansible-playbook -i aws_ec2.yml ec2-dockerconfig.yml'
+                            withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
+                                sh 'ansible-playbook -i aws_ec2.yml -v ec2-dockerconfig.yml'
+                            }
                         }
                     }
                 }
