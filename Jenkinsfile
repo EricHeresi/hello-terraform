@@ -5,6 +5,7 @@ pipeline {
         stage("Infrastructure"){
             steps {
                 withAWS(credentials: 'aws-access-key', region: 'eu-west-1') {
+                    sh 'terraform init'
                     sh 'terraform apply -auto-approve'
                 }
             }
