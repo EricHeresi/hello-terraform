@@ -12,8 +12,10 @@ pipeline {
         }
         stage("Deployment"){
             steps {
-                sshagent(['ssh_amazon']) {
-                    sh 'ansible-playbook -i ansible/aws_ec2.yml ansible/ec2-dockerconfig.yml'
+                dir('ansible') {
+                    sshagent(['ssh_amazon']) {
+                        sh 'ansible-playbook -i aws_ec2.yml ec2-dockerconfig.yml'
+                    }
                 }
             }
         }
