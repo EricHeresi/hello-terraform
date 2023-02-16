@@ -42,7 +42,7 @@
   - name: Docker login
     community.docker.docker_login:
       username: EricHeresi
-      password: {{ my_token }}
+      password: "{{ lookup('env', 'TOKEN') }}"
     vars:
       my_token: "{{ lookup('env', 'TOKEN') }}"
   - name: Download docker-compose.yml
