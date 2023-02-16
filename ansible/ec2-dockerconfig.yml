@@ -40,7 +40,7 @@
       owner: ec2-user
       group: ec2-user
   - name: GHCR credentials
-    shell: "echo {{ lookup('ansible.builtin.env', $GIT_TOKEN) }} | docker login ghcr.io -u EricHeresi --password-stdin"
+    shell: "echo {{ lookup('ansible.builtin.env', '$GIT_TOKEN') }} | docker login ghcr.io -u EricHeresi --password-stdin"
   - name: Download docker-compose.yml
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/EricHeresi/hello-terraform/main/docker/docker-compose.yml
