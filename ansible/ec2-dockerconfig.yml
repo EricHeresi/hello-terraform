@@ -48,7 +48,7 @@
       ansible_python_interpreter: /usr/bin/python3
   - name: Copy docker-compose.yml
     ansible.builtin.copy:
-      source: ../docker/docker-compose.yml
+      src: ../docker/docker-compose.yml
       dest: /home/ec2-user/hello2048/docker-compose.yml
       owner: ec2-user
       group: ec2-user
