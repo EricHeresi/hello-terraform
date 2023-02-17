@@ -1,11 +1,16 @@
 pipeline {
     agent any
-
+    enviroment{
+        GIT_USER = 'EricHeresi'
+    }
+    options{
+        timestamps()
+    }
     stages {
         stage('Git Login'){
             steps {
                 withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
-                    sh 'echo $GIT_TOKEN | docker login ghcr.io -u EricHeresi --password-stdin'
+                    sh 'echo $GIT_TOKEN | docker login ghcr.io -u ${GIT_USER} --password-stdin'
                 }
             }
         }
