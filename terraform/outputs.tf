@@ -1,9 +1,4 @@
-output "instance_ids" {
+output "ec2_map" {
   description = "ID of the EC2 Instances"
-  value       = [aws_instance.app_server.id]
-}
-
-output "instance_public_ips" {
-  description = "Public IP address of the EC2 Instances"
-  value       = [aws_instance.app_server.public_ip]
+  value       = { for i in aws_instance.ec2instance : i.id => "${i.id}:${i.public_ip}" }
 }
