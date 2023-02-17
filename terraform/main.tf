@@ -14,6 +14,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
+  count = var.instance_count
   ami           = "ami-0b752bf1df193a6c4"
   instance_type = "t2.micro"
   subnet_id     = "subnet-0dd37ba3dac470b30"

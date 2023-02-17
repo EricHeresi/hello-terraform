@@ -8,3 +8,8 @@ variable "instance_app_name" {
   type        = string
   default     = "vue2048"
 }
+variable "instance_count" {
+  description = "Creating n similar EC2 instances"
+  type        = number
+  default     = 1
+}
