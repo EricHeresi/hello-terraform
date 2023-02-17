@@ -41,7 +41,7 @@
       group: ec2-user
   - name: Docker login
     community.docker.docker_login:
-      username: EricHeresi
+      username: "{{ lookup('env', 'GIT_USER') }}"
       password: "{{ lookup('env', 'GIT_TOKEN') }}"
       registry_url: ghcr.io
     vars:
