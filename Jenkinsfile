@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    enviroment{
+    environment{
         GIT_USER = 'EricHeresi'
     }
     options{
