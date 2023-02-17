@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment{
         GIT_USER = 'EricHeresi'
+        GIT_PATH = 'ericheresi/hello-terraform'
     }
     options{
         timestamps()
@@ -24,7 +25,7 @@ pipeline {
                 }
                 sh 'git tag 1.0.${BUILD_NUMBER}'
                 sshagent(['github-ssh']) {
-                    sh 'git push git@github.com:EricHeresi/hello-terraform.git --tags'
+                    sh 'git push git@github.com:${GIT_PATH}.git --tags'
                 }
             }
         }
