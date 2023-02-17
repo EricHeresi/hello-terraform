@@ -6,4 +6,4 @@
 
 
 Expected to be fully operational if forked, only changing in Jenkinsfile its credentials and environment vars
-(unsure of existance of some problems with git tags)
+(maybe git tags can create sombre problems)
