@@ -18,9 +18,9 @@ pipeline {
         stage('Image generation'){
             steps {
                 dir("docker") {
-                    sh 'docker-compose build'
                     sh 'VERSION_TAG=1.0.${BUILD_NUMBER} docker-compose build'
                     sh 'VERSION_TAG=1.0.${BUILD_NUMBER} docker-compose push'
+                    sh 'docker-compose build'
                     sh 'docker-compose push'
                 }
                 sh 'git tag 1.0.${BUILD_NUMBER}'
