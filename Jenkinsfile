@@ -35,7 +35,7 @@ pipeline {
                     withAWS(credentials: 'aws-access-key', region: 'eu-west-1') {
                         sh 'terraform init'
                         sh 'terraform validate'
-                        sh 'terraform apply -auto-approve -var "instance_count=1"'
+                        sh 'terraform apply -auto-approve -var "instance_count=2"'
                     }
                 }
             }
